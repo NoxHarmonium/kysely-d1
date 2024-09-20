@@ -1,12 +1,13 @@
-# kysely-d1
+# @noxharmonium/kysely-d1
 
-[![ci](https://github.com/aidenwallis/kysely-d1/actions/workflows/ci.yaml/badge.svg)](https://github.com/aidenwallis/kysely-d1/actions/workflows/ci.yaml)
-[![npm](https://img.shields.io/npm/v/kysely-d1.svg)](https://www.npmjs.com/package/kysely-d1)
+_Temporary_ fork of https://github.com/aidenwallis/kysely-d1 that is published on NPM under "@noxharmonium/kysely-d1"
+until the changes in https://github.com/aidenwallis/kysely-d1/pull/25 are published.
 
-[Kysely](https://github.com/koskimas/kysely) adapter for [Cloudflare D1](https://developers.cloudflare.com/d1/).
+I really needed the ESM changes to get vitest to work so I published this to make my life easier.
+I'll delete it as soon as that PR is merged so please don't depend on this. I probably won't pull in any other updates.
 
 ```bash
-npm i kysely-d1
+npm i @noxharmonium/kysely-d1
 ```
 
 This project was largely adapted from [kysely-planetscale](https://github.com/depot/kysely-planetscale).
@@ -17,7 +18,7 @@ Pass your D1 binding into the dialect in order to configure the Kysely client. F
 
 ```typescript
 import { Kysely } from 'kysely';
-import { D1Dialect } from 'kysely-d1';
+import { D1Dialect } from '@noxharmonium/kysely-d1';
 
 export interface Env {
   DB: D1Database;
@@ -42,7 +43,7 @@ export default {
 
     // Create Kysely instance with kysely-d1
     const db = new Kysely<Database>({ dialect: new D1Dialect({ database: env.DB }) });
-    
+
     // Read row from D1 table
     const result = await db.selectFrom('kv').selectAll().where('key', '=', key).executeTakeFirst();
     if (!result) {
